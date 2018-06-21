@@ -14,8 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'CI Build'
-                sh 'flow-typed install --verbose'
                 sh 'npm ci --verbose'
+                sh 'flow-typed install --verbose'
             }
         }
         stage('Test') {
