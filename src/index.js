@@ -36,3 +36,30 @@
  *
  * @flow
  */
+
+export type Direction =
+  | 'row'
+  | 'column'
+
+export type AlignSymbol =
+  | '<'
+  | '>'
+  | '+'
+  | '~'
+
+export type Align =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-bewteen'
+
+export type Content = {
+  name: string,
+  direction: Direction,
+  flex: {
+    basic: null | string,
+    grow: null | 1
+  },
+  justifyContent: Align,
+  alignItems: Align
+}
