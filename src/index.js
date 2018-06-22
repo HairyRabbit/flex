@@ -63,3 +63,8 @@ export type Content = {
   justifyContent: Align,
   alignItems: Align
 }
+
+export type Section = {
+  section: string,
+  grids: Array<Content>
+}
