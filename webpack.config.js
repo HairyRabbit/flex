@@ -4,19 +4,17 @@ import {
   ContextReplacementPlugin
 } from 'webpack'
 
-const locales = process.env.MOMENT_LOCALS || 'en'
-
-export default ['terminal', 'browser'].map(env => {
-  const { target } = mapEnvToOptions(env)
+export default ['style-loader', 'jsx-loader', 'index'].map(input => {
   return {
     mode: process.env.NODE_ENV,
-    target,
-    entry: path.resolve('src/index.js'),
+    target: 'node',
+    node: false,
+    devtool: 'source-map',
+    entry: path.resolve(`src/${input}.js`),
     output: {
-      path: path.resolve('lib'),
-      filename: `${env}.js`,
-      library: 'Logger',
-      libraryTarget: 'umd'
+      path: path.resolve('.'),
+      filename: `${input}.js`,
+      libraryTarget: 'commonjs2'
     },
     module: {
       rules: [{
@@ -27,33 +25,11 @@ export default ['terminal', 'browser'].map(env => {
     plugins: [
       new EnvironmentPlugin({
         NODE_ENV: false,
-        DEBUG: false,
-        LOGGER_ENV: env
-      }),
-      new ContextReplacementPlugin(
-          /moment[\/\\]locale$/,
-        new RegExp(locales.split(',').join('|'))
-      )
+        DEBUG: false
+      })
     ],
     externals: [
-      'chalk',
-      'moment'
+
     ]
   }
 })
-
-function mapEnvToOptions(env) {
-  switch(env) {
-    case 'terminal':
-      return {
-        target: 'node'
-      }
-
-    case 'browser':
-      return {
-        target: 'web'
-      }
-    default:
-      throw new Error(`unknow env`)
-  }
-}

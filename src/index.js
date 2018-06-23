@@ -68,3 +68,5 @@ export type Section = {
   section: string,
   grids: Array<Content>
 }
+
+export { default as default } from './parser'

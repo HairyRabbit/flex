@@ -10,7 +10,7 @@ import render, { tpl } from './style'
 test('should render styles', () => {
   expect(
     render([{
-      section: 'foo',
+      name: 'foo',
       grids: [{
         name: 'left',
         flex: {

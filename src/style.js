@@ -24,7 +24,7 @@ export default function render(tree: Array<Section>): string {
       sec_decls.push(`align-items: ${a.alignItems};`)
     }
 
-    roles.push(tpl(a.section, sec_decls))
+    roles.push(tpl(a.name, sec_decls))
 
     a.grids.forEach(b => {
       const gd_decls = []
@@ -47,7 +47,7 @@ export default function render(tree: Array<Section>): string {
         gd_decls.push(`align-items: ${b.alignItems};`)
       }
 
-      roles.push(tpl(`${a.section}-${b.name}`, gd_decls))
+      roles.push(tpl(`${a.name}-${b.name}`, gd_decls))
     })
   })
 
