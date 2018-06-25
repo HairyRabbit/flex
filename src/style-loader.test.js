@@ -14,6 +14,8 @@ test.skip('should use as webpack loader', (done) => {
     entry: path.resolve('mocks/index.js'),
     devtool: 'source-map',
     output: {
+      path: path.resolve('mocks'),
+      filename: 'style.output.js',
       libraryTarget: 'commonjs2'
     },
     module: {
@@ -28,7 +30,7 @@ test.skip('should use as webpack loader', (done) => {
     }
   }, (err, stats) => {
     expect(
-      require(path.resolve('./dist/main.js')).default
+      require(path.resolve('./mocks/style.output.js')).default
     ).not.toEqual(
       null
     )
@@ -37,13 +39,15 @@ test.skip('should use as webpack loader', (done) => {
   })
 })
 
-test.only('should use as webpack loader', (done) => {
+test.skip('should use as webpack loader', (done) => {
   exec('npm run build')
   webpack({
     mode: 'development',
     entry: path.resolve('mocks/jsx.js'),
     devtool: 'source-map',
     output: {
+      path: path.resolve('mocks'),
+      filename: 'jsx.output.js',
       libraryTarget: 'commonjs2'
     },
     module: {
@@ -62,9 +66,8 @@ test.only('should use as webpack loader', (done) => {
       }]
     }
   }, (err, stats) => {
-    console.log(require(path.resolve('./dist/main.js')).default)
     expect(
-      require(path.resolve('./dist/main.js')).default
+      require(path.resolve('./mocks/jsx.output.js')).default
     ).not.toEqual(
       null
     )

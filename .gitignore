@@ -60,7 +60,6 @@ typings/
 # Project
 lib
 dist
-mocks
 *.map
 index.js
 *-loader.js

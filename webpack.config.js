@@ -9,7 +9,6 @@ export default ['style-loader', 'jsx-loader', 'index'].map(input => {
     mode: process.env.NODE_ENV,
     target: 'node',
     node: false,
-    devtool: 'source-map',
     entry: path.resolve(`src/${input}.js`),
     output: {
       path: path.resolve('.'),
